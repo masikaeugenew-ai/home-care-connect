@@ -9,6 +9,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { Star, MapPin, Clock, Shield, Search, Filter } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import BookingDialog from "@/components/BookingDialog";
 
 const caregivers = [
   { id: 1, name: "Grace Wanjiku", location: "Westlands, Nairobi", rating: 4.9, reviews: 87, specialty: "Elderly Care", experience: "8 years", rate: "KES 1,500/day", verified: true, available: true },
@@ -22,6 +23,8 @@ const caregivers = [
 const FindCaregiver = () => {
   const [search, setSearch] = useState("");
   const [specialty, setSpecialty] = useState("all");
+  const [selectedCaregiver, setSelectedCaregiver] = useState<typeof caregivers[0] | null>(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const filtered = caregivers.filter((c) => {
     const matchSearch = c.name.toLowerCase().includes(search.toLowerCase()) || c.location.toLowerCase().includes(search.toLowerCase());
@@ -114,7 +117,7 @@ const FindCaregiver = () => {
                     <span className="font-semibold text-foreground">{cg.rate}</span>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Button size="sm" className="gradient-primary border-0 text-primary-foreground" disabled={!cg.available}>
+                        <Button size="sm" className="gradient-primary border-0 text-primary-foreground" disabled={!cg.available} onClick={() => { setSelectedCaregiver(cg); setBookingOpen(true); }}>
                           {cg.available ? "Book Now" : "Unavailable"}
                         </Button>
                       </TooltipTrigger>
@@ -135,6 +138,7 @@ const FindCaregiver = () => {
         )}
       </div>
       <Footer />
+      <BookingDialog caregiver={selectedCaregiver} open={bookingOpen} onOpenChange={setBookingOpen} />
     </div>
   );
 };

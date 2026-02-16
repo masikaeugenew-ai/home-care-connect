@@ -10,6 +10,7 @@ import FinancialDashboard from "./pages/dashboard/FinancialDashboard";
 import MarketingDashboard from "./pages/dashboard/MarketingDashboard";
 import OperationsDashboard from "./pages/dashboard/OperationsDashboard";
 import NotFound from "./pages/NotFound";
+import FindCaregiver from "./pages/FindCaregiver";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/dashboard/financial" element={<FinancialDashboard />} />
           <Route path="/dashboard/marketing" element={<MarketingDashboard />} />
           <Route path="/dashboard/operations" element={<OperationsDashboard />} />
+          <Route path="/find-caregiver" element={<FindCaregiver />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
