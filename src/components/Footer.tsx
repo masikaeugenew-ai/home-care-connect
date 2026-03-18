@@ -13,7 +13,7 @@ const Footer = () => (
             <span className="text-xl font-bold">HomeCare</span>
           </div>
           <p className="text-sm text-primary-foreground/70">
-            Kenya's trusted platform connecting families with verified, compassionate caregivers.
+            Africa's most trusted platform connecting families with verified, compassionate caregivers. Starting in Kenya.
           </p>
         </div>
         <div>
