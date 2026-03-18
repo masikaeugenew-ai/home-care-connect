@@ -1,10 +1,10 @@
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import KPICard from "@/components/dashboard/KPICard";
 import GlassCard from "@/components/dashboard/GlassCard";
-import { operationsKPIs, operationalLoad, bottlenecks, incidents } from "@/data/mockData";
+import { operationsKPIs, operationalLoad, bottlenecks, incidents, geofenceMetrics, kycQueue } from "@/data/mockData";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip, Legend } from "recharts";
 import { Badge } from "@/components/ui/badge";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, MapPin, ShieldCheck } from "lucide-react";
 
 const OperationsDashboard = () => (
   <DashboardLayout title="Operations Dashboard">
@@ -29,6 +29,63 @@ const OperationsDashboard = () => (
         </BarChart>
       </ResponsiveContainer>
     </GlassCard>
+
+    {/* Geo-Fencing & KYC Queue */}
+    <div className="grid gap-6 lg:grid-cols-2">
+      <GlassCard>
+        <h3 className="text-lg font-display text-foreground mb-4 flex items-center gap-2">
+          <MapPin className="h-4 w-4 text-primary" /> Geo-Fence Compliance by Region
+        </h3>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border/50 text-left text-muted-foreground">
+                <th className="pb-3 pr-4 font-medium">Region</th>
+                <th className="pb-3 pr-4 font-medium">Caregivers</th>
+                <th className="pb-3 pr-4 font-medium">Compliance</th>
+                <th className="pb-3 font-medium">Avg Distance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {geofenceMetrics.map((g) => (
+                <tr key={g.region} className="border-b border-border/30">
+                  <td className="py-2.5 pr-4 font-medium text-foreground">{g.region}</td>
+                  <td className="py-2.5 pr-4 text-muted-foreground">{g.caregivers.toLocaleString()}</td>
+                  <td className="py-2.5 pr-4">
+                    <span className={parseFloat(g.compliance) >= 97 ? "text-success font-medium" : "text-warning font-medium"}>
+                      {g.compliance}
+                    </span>
+                  </td>
+                  <td className="py-2.5 text-muted-foreground">{g.avgClockInDistance}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </GlassCard>
+
+      <GlassCard>
+        <h3 className="text-lg font-display text-foreground mb-4 flex items-center gap-2">
+          <ShieldCheck className="h-4 w-4 text-primary" /> KYC Verification Pipeline
+        </h3>
+        <div className="space-y-3">
+          {kycQueue.map((q) => (
+            <div key={q.stage} className="flex items-center justify-between rounded-xl bg-white/40 p-3 border border-white/30">
+              <div>
+                <p className="text-sm font-medium text-foreground">{q.stage}</p>
+                {q.avgDays > 0 && <p className="text-xs text-muted-foreground">Avg {q.avgDays} days in queue</p>}
+              </div>
+              <Badge
+                variant={q.stage.includes("Pending") ? "destructive" : q.stage.includes("Approved") ? "secondary" : "default"}
+                className={q.stage.includes("Approved") ? "text-success" : q.stage.includes("Rejected") ? "" : ""}
+              >
+                {q.count}
+              </Badge>
+            </div>
+          ))}
+        </div>
+      </GlassCard>
+    </div>
 
     <div className="grid gap-6 lg:grid-cols-2">
       <GlassCard>
