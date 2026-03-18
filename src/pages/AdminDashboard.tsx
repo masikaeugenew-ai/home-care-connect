@@ -4,9 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Users, Heart, TrendingUp, Clock, MapPin, CheckCircle, AlertCircle, ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { Users, Heart, TrendingUp, Clock, MapPin, CheckCircle, AlertCircle, ArrowUpRight, ArrowDownRight, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 const monthlyData = [
@@ -14,8 +14,8 @@ const monthlyData = [
   { month: "Oct", bookings: 410, revenue: 615 },
   { month: "Nov", bookings: 380, revenue: 570 },
   { month: "Dec", bookings: 450, revenue: 675 },
-  { month: "Jan", bookings: 520, revenue: 780 },
-  { month: "Feb", bookings: 580, revenue: 870 },
+  { month: "Jan", bookings: 620, revenue: 1240 },
+  { month: "Feb", bookings: 740, revenue: 1680 },
 ];
 
 const regionData = [
@@ -29,18 +29,25 @@ const regionData = [
 const COLORS = ["hsl(215 90% 42%)", "hsl(200 80% 55%)", "hsl(152 60% 42%)", "hsl(38 92% 50%)", "hsl(215 20% 65%)"];
 
 const recentBookings = [
-  { id: 1, client: "John Mwangi", caregiver: "Grace Wanjiku", location: "Westlands", status: "active", date: "Feb 9" },
-  { id: 2, client: "Alice Kamau", caregiver: "Mary Akinyi", location: "Kilimani", status: "completed", date: "Feb 8" },
-  { id: 3, client: "Peter Odhiambo", caregiver: "Florence Muthoni", location: "Karen", status: "pending", date: "Feb 8" },
-  { id: 4, client: "Lucy Wangari", caregiver: "Sarah Chebet", location: "Eldoret", status: "active", date: "Feb 7" },
-  { id: 5, client: "James Kiprop", caregiver: "Jane Nyambura", location: "Mombasa", status: "completed", date: "Feb 7" },
+  { id: 1, client: "John Mwangi", caregiver: "Grace Wanjiku", location: "Westlands", status: "active", date: "Feb 9", verified: true },
+  { id: 2, client: "Alice Kamau", caregiver: "Mary Akinyi", location: "Kilimani", status: "completed", date: "Feb 8", verified: true },
+  { id: 3, client: "Peter Odhiambo", caregiver: "Florence Muthoni", location: "Karen", status: "pending", date: "Feb 8", verified: true },
+  { id: 4, client: "Lucy Wangari", caregiver: "Sarah Chebet", location: "Eldoret", status: "active", date: "Feb 7", verified: true },
+  { id: 5, client: "James Kiprop", caregiver: "Jane Nyambura", location: "Mombasa", status: "completed", date: "Feb 7", verified: true },
 ];
 
 const kpis = [
   { label: "Total Caregivers", value: "2,547", change: "+12%", up: true, icon: Users },
   { label: "Active Bookings", value: "384", change: "+8%", up: true, icon: Heart },
-  { label: "Revenue (KES)", value: "8.7M", change: "+15%", up: true, icon: TrendingUp },
-  { label: "Avg Response Time", value: "12 min", change: "-3min", up: true, icon: Clock },
+  { label: "Revenue (KES)", value: "16.8M", change: "+35%", up: true, icon: TrendingUp },
+  { label: "Avg Match Time", value: "8 min", change: "-2min", up: true, icon: Clock },
+];
+
+const kycStats = [
+  { label: "KYC Pending", value: "142", status: "warning" },
+  { label: "Verified This Month", value: "89", status: "success" },
+  { label: "Avg Review Time", value: "3 days", status: "warning" },
+  { label: "Rejection Rate", value: "3.6%", status: "success" },
 ];
 
 const chartConfig = {
@@ -55,7 +62,7 @@ const AdminDashboard = () => {
       <div className="container mx-auto px-6 pt-28 pb-20">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
           <h1 className="text-3xl font-bold text-foreground">Admin <span className="gradient-text">Dashboard</span></h1>
-          <p className="mt-1 text-muted-foreground">Platform analytics & management</p>
+          <p className="mt-1 text-muted-foreground">Platform analytics & management — Kenya's trusted home care platform</p>
         </motion.div>
 
         {/* KPIs */}
@@ -85,6 +92,27 @@ const AdminDashboard = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* KYC Overview */}
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5 text-primary" /> KYC Verification Overview
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                {kycStats.map((stat) => (
+                  <div key={stat.label} className="rounded-xl border border-border p-4 text-center">
+                    <p className={`text-2xl font-bold ${stat.status === "success" ? "text-success" : "text-warning"}`}>{stat.value}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
 
         {/* Charts */}
         <div className="mb-8 grid gap-6 lg:grid-cols-3">
@@ -153,7 +181,10 @@ const AdminDashboard = () => {
                   {recentBookings.map((b) => (
                     <tr key={b.id} className="border-b border-border/50">
                       <td className="py-3 pr-4 font-medium text-foreground">{b.client}</td>
-                      <td className="py-3 pr-4 text-muted-foreground">{b.caregiver}</td>
+                      <td className="py-3 pr-4 text-muted-foreground">
+                        {b.caregiver}
+                        {b.verified && <ShieldCheck className="ml-1 inline h-3 w-3 text-primary" />}
+                      </td>
                       <td className="py-3 pr-4 text-muted-foreground"><MapPin className="mr-1 inline h-3 w-3" />{b.location}</td>
                       <td className="py-3 pr-4 text-muted-foreground">{b.date}</td>
                       <td className="py-3">
