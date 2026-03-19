@@ -4,82 +4,79 @@
 
 @layer base {
   :root {
-    --background: 214 40% 96%;
-    --foreground: 215 50% 12%;
+    --background: 0 0% 100%;
+    --foreground: 207 30% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 50% 12%;
+    --card-foreground: 207 30% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 50% 12%;
+    --popover-foreground: 207 30% 15%;
 
-    --primary: 213 88% 34%;
+    --primary: 207 73% 28%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 60% 95%;
-    --secondary-foreground: 213 88% 34%;
+    --secondary: 207 30% 95%;
+    --secondary-foreground: 207 73% 28%;
 
-    --muted: 214 30% 93%;
-    --muted-foreground: 215 20% 46%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 207 15% 46%;
 
-    --accent: 216 80% 58%;
+    --accent: 27 91% 54%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 25% 88%;
-    --input: 214 25% 88%;
-    --ring: 213 88% 34%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 207 73% 28%;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 213 88% 34%;
+    --sidebar-background: 207 73% 28%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 216 80% 58%;
+    --sidebar-primary: 27 91% 54%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 213 80% 28%;
+    --sidebar-accent: 207 73% 22%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 213 70% 30%;
-    --sidebar-ring: 216 80% 58%;
+    --sidebar-border: 207 60% 24%;
+    --sidebar-ring: 27 91% 54%;
 
     --success: 152 60% 42%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-
-    --gradient-start: 213 88% 34%;
-    --gradient-end: 216 80% 58%;
   }
 
   .dark {
-    --background: 215 50% 8%;
-    --foreground: 210 30% 94%;
-    --card: 215 50% 12%;
-    --card-foreground: 210 30% 94%;
-    --popover: 215 50% 12%;
-    --popover-foreground: 210 30% 94%;
-    --primary: 216 80% 58%;
+    --background: 207 40% 8%;
+    --foreground: 210 20% 94%;
+    --card: 207 40% 12%;
+    --card-foreground: 210 20% 94%;
+    --popover: 207 40% 12%;
+    --popover-foreground: 210 20% 94%;
+    --primary: 207 73% 40%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 215 40% 20%;
-    --secondary-foreground: 210 30% 94%;
-    --muted: 215 40% 20%;
-    --muted-foreground: 215 20% 60%;
-    --accent: 216 80% 58%;
+    --secondary: 207 30% 18%;
+    --secondary-foreground: 210 20% 94%;
+    --muted: 207 30% 18%;
+    --muted-foreground: 207 15% 60%;
+    --accent: 27 91% 54%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62% 30%;
-    --destructive-foreground: 210 30% 94%;
-    --border: 215 40% 20%;
-    --input: 215 40% 20%;
-    --ring: 216 80% 58%;
-    --sidebar-background: 215 55% 6%;
-    --sidebar-foreground: 210 30% 94%;
-    --sidebar-primary: 216 80% 58%;
+    --destructive-foreground: 210 20% 94%;
+    --border: 207 30% 20%;
+    --input: 207 30% 20%;
+    --ring: 27 91% 54%;
+    --sidebar-background: 207 50% 6%;
+    --sidebar-foreground: 210 20% 94%;
+    --sidebar-primary: 27 91% 54%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 215 40% 15%;
-    --sidebar-accent-foreground: 210 30% 94%;
-    --sidebar-border: 215 40% 15%;
-    --sidebar-ring: 216 80% 58%;
+    --sidebar-accent: 207 30% 14%;
+    --sidebar-accent-foreground: 210 20% 94%;
+    --sidebar-border: 207 30% 14%;
+    --sidebar-ring: 27 91% 54%;
   }
 }
 
@@ -91,65 +88,48 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
-  h1, h2, h3, h4 {
-    font-family: 'DM Serif Display', Georgia, serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Jost', system-ui, sans-serif;
   }
 }
 
 @layer utilities {
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(213 88% 34%), hsl(216 80% 58%));
+    background: linear-gradient(135deg, hsl(207 73% 28%), hsl(207 73% 38%));
+  }
+  .gradient-accent {
+    background: linear-gradient(135deg, hsl(27 91% 54%), hsl(27 91% 64%));
   }
   .gradient-text {
-    background: linear-gradient(135deg, hsl(213 88% 34%), hsl(216 80% 58%));
+    background: linear-gradient(135deg, hsl(207 73% 28%), hsl(207 73% 42%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  .gradient-hero {
+    background: linear-gradient(135deg, hsl(207 73% 28%), hsl(207 73% 22%));
+  }
   .glass-card {
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    box-shadow: 0 8px 32px rgba(10, 79, 163, 0.08), 0 1px 3px rgba(0,0,0,0.04);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 24px rgba(15, 76, 129, 0.06);
   }
   .glass-sidebar {
-    background: linear-gradient(180deg, hsl(213 88% 34%), hsl(213 80% 26%));
+    background: linear-gradient(180deg, hsl(207 73% 28%), hsl(207 73% 22%));
     backdrop-filter: blur(20px);
   }
   .glass-topbar {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   }
   .dashboard-bg {
-    background: linear-gradient(135deg, hsl(214 40% 96%) 0%, hsl(216 60% 92%) 50%, hsl(214 40% 96%) 100%);
-    position: relative;
-  }
-  .dashboard-bg::before {
-    content: '';
-    position: fixed;
-    top: -20%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, hsl(216 80% 58% / 0.08), transparent 70%);
-    pointer-events: none;
-  }
-  .dashboard-bg::after {
-    content: '';
-    position: fixed;
-    bottom: -10%;
-    left: -5%;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, hsl(213 88% 34% / 0.06), transparent 70%);
-    pointer-events: none;
+    background: hsl(210 20% 97%);
   }
   .font-display {
-    font-family: 'DM Serif Display', Georgia, serif;
+    font-family: 'Jost', system-ui, sans-serif;
   }
 }

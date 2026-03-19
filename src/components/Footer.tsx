@@ -10,31 +10,33 @@ const Footer = () => (
             <div className="rounded-lg bg-primary-foreground/20 p-2">
               <Heart className="h-5 w-5" />
             </div>
-            <span className="text-xl font-bold">HomeCare</span>
+            <span className="text-xl font-bold font-display">Home<span className="text-accent">Care</span></span>
           </div>
           <p className="text-sm text-primary-foreground/70">
-            Africa's most trusted platform connecting families with verified, compassionate caregivers. Starting in Kenya.
+            Kenya's most trusted platform connecting families with verified, compassionate caregivers across 47 counties.
           </p>
         </div>
         <div>
-          <h4 className="mb-4 font-semibold">Quick Links</h4>
+          <h4 className="mb-4 font-semibold font-display">Quick Links</h4>
           <div className="flex flex-col gap-2 text-sm text-primary-foreground/70">
             <Link to="/find-caregiver" className="hover:text-primary-foreground transition-colors">Find a Caregiver</Link>
-            <Link to="/caregiver-portal" className="hover:text-primary-foreground transition-colors">Become a Caregiver</Link>
+            <Link to="/caregiver-portal" className="hover:text-primary-foreground transition-colors">Caregiver Portal</Link>
+            <Link to="/provider-portal" className="hover:text-primary-foreground transition-colors">Provider / Payer Portal</Link>
             <Link to="/admin" className="hover:text-primary-foreground transition-colors">Admin Dashboard</Link>
           </div>
         </div>
         <div>
-          <h4 className="mb-4 font-semibold">Services</h4>
+          <h4 className="mb-4 font-semibold font-display">Services</h4>
           <div className="flex flex-col gap-2 text-sm text-primary-foreground/70">
             <span>Elderly Care</span>
+            <span>Private Home Care</span>
             <span>Post-Surgery Care</span>
-            <span>Child Care</span>
-            <span>Disability Support</span>
+            <span>Heart-Failure Care</span>
+            <span>Respite Care</span>
           </div>
         </div>
         <div>
-          <h4 className="mb-4 font-semibold">Contact</h4>
+          <h4 className="mb-4 font-semibold font-display">Contact</h4>
           <div className="flex flex-col gap-3 text-sm text-primary-foreground/70">
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4" />

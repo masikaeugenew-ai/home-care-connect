@@ -14,6 +14,7 @@ import FindCaregiver from "./pages/FindCaregiver";
 import Index from "./pages/Index";
 import CaregiverPortal from "./pages/CaregiverPortal";
 import AdminDashboard from "./pages/AdminDashboard";
+import ProviderPortal from "./pages/ProviderPortal";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/find-caregiver" element={<FindCaregiver />} />
           <Route path="/caregiver-portal" element={<CaregiverPortal />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/provider-portal" element={<ProviderPortal />} />
           <Route path="/dashboard" element={<ExecutiveDashboard />} />
           <Route path="/dashboard/sales" element={<SalesDashboard />} />
           <Route path="/dashboard/support" element={<SupportDashboard />} />
